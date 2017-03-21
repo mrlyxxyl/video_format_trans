@@ -15,8 +15,8 @@ public class FormatConversion {
         String[] strings = {"e:/test.avi", "e:/test.3gp", "e:/test.wmv"};
         long start = System.currentTimeMillis();
         for (int i = 0; i < strings.length; i++) {
-            toFlv(strings[i]);
-            toMp4(strings[i]);
+//            toFlv(strings[i]);
+//            toMp4(strings[i]);
             toAvi(strings[i]);
         }
         System.out.println(System.currentTimeMillis() - start);
