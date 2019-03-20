@@ -14,7 +14,7 @@ public class FormatConversion {
     public static void main(String[] args) throws EncoderException {
 
         long start = System.currentTimeMillis();
-        File[] files = new File("E:\\download\\云析学院").listFiles();
+        File[] files = new File("E:\\study\\video\\Java并发编程与高并发解决方案(完整)").listFiles();
         for (File file : files) {
             toMp4(file);
         }
@@ -23,6 +23,13 @@ public class FormatConversion {
 
     public static void toMp4(File source) {
         try {
+
+            String path = source.getAbsolutePath();
+            if (!path.endsWith("wmv")) {
+                return;
+            }
+            path = path.replaceAll("wmv", "mp4");
+            File target = new File(path);
 
             MultimediaInfo info = new Encoder().getInfo(source);
             AudioInfo audioTmp = info.getAudio();
@@ -33,13 +40,6 @@ public class FormatConversion {
             VideoInfo videoTmp = info.getVideo();
             int videoBitRate = videoTmp.getBitRate();
             float videoFrameRate = videoTmp.getFrameRate();
-
-            String path = source.getAbsolutePath();
-            if (!path.endsWith("wmv")) {
-                return;
-            }
-            path = path.replaceAll("wmv", "mp4");
-            File target = new File(path);
 
             AudioAttributes audio = new AudioAttributes();
             audio.setCodec("libfaac");
@@ -63,6 +63,13 @@ public class FormatConversion {
 
     public static void toAvi(File source) {
         try {
+            String path = source.getAbsolutePath();
+            if (!path.endsWith("wmv")) {
+                return;
+            }
+            path = path.replaceAll("wmv", "avi");
+            File target = new File(path);
+
             MultimediaInfo info = new Encoder().getInfo(source);
             AudioInfo audioTmp = info.getAudio();
             int audioBitRate = audioTmp.getBitRate();
@@ -71,10 +78,6 @@ public class FormatConversion {
             VideoInfo videoTmp = info.getVideo();
             int videoBitRate = videoTmp.getBitRate();
             float videoFrameRate = videoTmp.getFrameRate();
-
-            String path = source.getAbsolutePath();
-            path = path.replaceAll("wmv", "avi");
-            File target = new File(path);
 
             AudioAttributes audio = new AudioAttributes();
             audio.setCodec("libmp3lame");
@@ -99,6 +102,14 @@ public class FormatConversion {
 
     public static void toFlv(File source) {
         try {
+
+            String path = source.getAbsolutePath();
+            if (!path.endsWith("wmv")) {
+                return;
+            }
+            path = path.replaceAll("wmv", "flv");
+            File target = new File(path);
+
             MultimediaInfo info = new Encoder().getInfo(source);
             AudioInfo audioTmp = info.getAudio();
             int audioBitRate = audioTmp.getBitRate();
@@ -107,10 +118,6 @@ public class FormatConversion {
             VideoInfo videoTmp = info.getVideo();
             int videoBitRate = videoTmp.getBitRate();
             float videoFrameRate = videoTmp.getFrameRate();
-
-            String path = source.getAbsolutePath();
-            path = path.replaceAll("wmv", "flv");
-            File target = new File(path);
 
             AudioAttributes audio = new AudioAttributes();
             audio.setCodec("libmp3lame");
